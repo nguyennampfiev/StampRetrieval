@@ -1,9 +1,9 @@
 ## Source code implementation of Grounding DINO and MGPSA for document retrieval.
 ### Pipeline
- ` 1. Stamp extraction with finetuning Grounding DINO
- ` 2. Finetuning of MGPSA(https://ieeexplore.ieee.org/document/10638479) for stamp feature extraction.
- ` 3. Stamp retrieval with KNNs.
-## To run demo with Steamlit, just build docker image from source. Make sure you already installed docker on your computer
+ ` 1. Stamp extraction with finetuning Grounding DINO`
+ ` 2. Finetuning of MGPSA(https://ieeexplore.ieee.org/document/10638479) for stamp feature extraction.`
+ ` 3. Stamp retrieval with KNNs.``
+### To run demo with Steamlit, just build docker image from source. Make sure you already installed docker on your computer
 ```
 docker build -t retrieval-stamp .
 ```
