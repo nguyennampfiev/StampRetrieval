@@ -69,7 +69,29 @@ def load_json(json_path='outputs/preds/uploaded_image.json', image_path='uploade
         return cropped_image  # Return the cropped image
     else:
         return None  # No valid bounding box found
-
+def load_json_v2(json_path='outputs/preds/uploaded_image.json', image_path='uploaded_image.jpg'):
+    with open(json_path, 'r') as file:
+        # Load the JSON data
+        data = json.load(file)
+        
+    list_bboxes = data['bboxes']
+    list_scores = data['scores']
+    
+    # Filter bounding boxes based on score threshold
+    filtered_bboxes = [
+        bbox for bbox, score in zip(list_bboxes, list_scores) if score > 0.5
+    ]
+    if len(filtered_bboxes)==0:
+        return None
+    # Find the bounding box with the largest area
+    list_stamps = []
+    original_image = Image.open(image_path).convert('RGB')
+    for bbox in filtered_bboxes:
+        # Assuming bbox is in the format [x1, y1, x2, y2]
+        # Calculate area: (x2 - x1) * (y2 - y1)
+        list_stamps.append(original_image.crop(bbox))
+    return list_stamps
+    
 def find_similar_images(features, query_feat, query_name):
     # Implement your search logic here to find similar images
     features = features.to('cpu').detach().numpy()
