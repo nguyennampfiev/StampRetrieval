@@ -11,3 +11,9 @@ then to see demo
 ```
 docker run --rm -it -p 8501:8501 retrieval-stamp
 ```
+
+### To run demo with Gradio,
+```
+python app_gradio.py
+```
+
